@@ -14,4 +14,4 @@ Skills Section: Showcase your technical skills and expertise in a visually appea
 
 Contact Form: Enable visitors to get in touch with you easily through a contact form, making networking and collaboration opportunities more accessible.
 
-click to visit website :
+click to visit website :  https://my-portfolio-6x2.pages.dev/
