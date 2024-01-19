@@ -46,7 +46,7 @@ export default function ContentSection() {
                         </div>
                     </div>
                 </div>
-                <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <div className="-ml-12 -mt-20 p-10 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
 
                     <img className="h-300 w-200 -ml-12 -mt-12 p-12" src={ContentImage} alt="" />
 
