@@ -2,8 +2,8 @@ import React from 'react';
 
 const PrivacySection = () => {
     return (
-        <div className="bg-white min-h-screen flex items-center justify-center mt-0">
-            <div className="max-w-3xl bg-gray-100 p-8 shadow-md rounded-md">
+        <div className="bg-white min-h-screen flex items-center justify-center mt-9">
+            <div className="max-w-3xl bg-gray-100 p-10 shadow-md rounded-md">
                 <h1 className="text-3xl font-semibold mb-6">Privacy Policy</h1>
 
                 <p>
