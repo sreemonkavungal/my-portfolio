@@ -8,10 +8,12 @@ import AboutPage from './pages/AboutPage.js';
 import React from 'react';
 import TermsPage from './pages/TermsPage.js';
 import PrivacyPage from './pages/PrivacyPage.js';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   return (
     <BrowserRouter>
+    <SpeedInsights>
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/contact' element={<ContactPage/>}/>
@@ -21,6 +23,7 @@ function App() {
       <Route path='/terms-of-service' element={<TermsPage/>}/>
       <Route path='/privacy-policy' element={<PrivacyPage/>}/>
     </Routes>
+    </SpeedInsights>
     </BrowserRouter>
   );
 }
