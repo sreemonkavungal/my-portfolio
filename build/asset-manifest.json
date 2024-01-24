@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b67a6060.css",
+    "main.js": "/static/js/main.9ce8b8f4.js",
+    "static/js/787.2dcca737.chunk.js": "/static/js/787.2dcca737.chunk.js",
+    "static/media/SREEMON KS.jpg": "/static/media/SREEMON KS.9a70e417a2cfe2f286ea.jpg",
+    "static/media/BMI-Calculator.jpg": "/static/media/BMI-Calculator.272a7cb481e521ed82d6.jpg",
+    "static/media/ToDoList.jpg": "/static/media/ToDoList.8d115f0be21113a9f138.jpg",
+    "static/media/HTML-Page.jpg": "/static/media/HTML-Page.72c1dde9f1a2a0899c8d.jpg",
+    "static/media/LoginApp-MERN.jpg": "/static/media/LoginApp-MERN.c628ed40f05074abff2a.jpg",
+    "index.html": "/index.html",
+    "main.b67a6060.css.map": "/static/css/main.b67a6060.css.map",
+    "main.9ce8b8f4.js.map": "/static/js/main.9ce8b8f4.js.map",
+    "787.2dcca737.chunk.js.map": "/static/js/787.2dcca737.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b67a6060.css",
+    "static/js/main.9ce8b8f4.js"
+  ]
+}
