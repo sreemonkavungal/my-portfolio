@@ -13,7 +13,6 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 function App() {
   return (
     <BrowserRouter>
-    <SpeedInsights>
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/contact' element={<ContactPage/>}/>
@@ -23,7 +22,7 @@ function App() {
       <Route path='/terms-of-service' element={<TermsPage/>}/>
       <Route path='/privacy-policy' element={<PrivacyPage/>}/>
     </Routes>
-    </SpeedInsights>
+    <SpeedInsights/>
     </BrowserRouter>
   );
 }
