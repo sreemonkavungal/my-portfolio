@@ -27,7 +27,7 @@ export default function ProjectSection() {
 
 {/* Image Container */}
     <div className="mb-6">
-    <img src={MernApp} alt="HTML-IMG" className="w-full h-40 object-cover rounded-md mt-5" />
+    <img src={MernApp} alt="MERN-App-IMG" className="w-full h-40 object-cover rounded-md mt-5" />
     </div>
 
 {/* Visit Site Button */}
@@ -132,7 +132,7 @@ export default function ProjectSection() {
 
 {/* Image Container */}
     <div className="mb-6">
-    <img src={Ecom} alt="HTML-IMG" className="w-full h-40 object-cover rounded-md mt-5" />
+    <img src={Ecom} alt="Ecom-IMG" className="w-full h-40 object-cover rounded-md mt-5" />
     </div>
 
 {/* Visit Site Button */}
@@ -199,7 +199,7 @@ export default function ProjectSection() {
 
 {/* Image Container */}
     <div className="mb-6">
-    <img src={Reddit} alt="HTML-IMG" className="w-full h-40 object-cover rounded-md mt-5" />
+    <img src={Reddit} alt="Reddit-IMG" className="w-full h-40 object-cover rounded-md mt-5" />
     </div>
 
 {/* Visit Site Button */}
