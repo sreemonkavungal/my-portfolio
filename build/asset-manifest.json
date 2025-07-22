@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.634bc260.css",
+    "main.js": "/static/js/main.fba14c10.js",
+    "static/js/787.2dcca737.chunk.js": "/static/js/787.2dcca737.chunk.js",
+    "static/media/SREEMON KS.jpg": "/static/media/SREEMON KS.9a70e417a2cfe2f286ea.jpg",
+    "index.html": "/index.html",
+    "main.634bc260.css.map": "/static/css/main.634bc260.css.map",
+    "main.fba14c10.js.map": "/static/js/main.fba14c10.js.map",
+    "787.2dcca737.chunk.js.map": "/static/js/787.2dcca737.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.634bc260.css",
+    "static/js/main.fba14c10.js"
+  ]
+}
