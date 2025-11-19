@@ -37,7 +37,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="mailto:your-email@example.com"
+                href="mailto:sreemonkavungal@gmail.com"
                 aria-label="Email Sreemon"
                 className="inline-flex items-center justify-center rounded-md bg-gray-100 p-2 text-gray-700 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
               >
@@ -79,39 +79,28 @@ export default function Footer() {
             {/* Footer Button */}
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-
               <a
                 href="https://www.linkedin.com/in/sreemonkavungal/"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="
-      inline-flex items-center justify-center
-      rounded-md bg-indigo-600 
-      px-4 py-2 text-sm font-semibold text-white 
-      hover:bg-indigo-700 
-      focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
-      w-[170px] mx-0                /* mobile width */
-      sm:w-auto sm:px-4 sm:py-2     /* normal width on tablet+ */
-    "
-              >
-                Connect on LinkedIn
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-indigo-600 
+                px-4 py-2 text-sm font-semibold text-white
+                w-[190px]                    
+                sm:w-auto sm:px-4 sm:py-2
+                shadow-sm hover:bg-indigo-700">
+                <FaLinkedin className="h-4 w-4" /> Connect on LinkedIn
               </a>
 
               <a
                 href="/contact"
                 className="
-      inline-flex items-center justify-center
-      rounded-md border border-gray-200 
-      px-4 py-2 text-sm text-gray-800 hover:bg-gray-50
-      w-[120px]                      /* mobile width */
-      sm:w-auto sm:px-4 sm:py-2      /* normal width on tablet+ */
-    "
-              >
-                Contact
+                inline-flex items-center justify-center
+                rounded-md border border-gray-200 
+                px-4 py-2 text-sm text-gray-800 hover:bg-gray-50
+                w-[120px] 
+                sm:w-auto sm:px-4 sm:py-2">Contact
               </a>
-
             </div>
-
 
 
           </div>
