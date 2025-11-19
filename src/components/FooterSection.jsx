@@ -85,7 +85,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-indigo-600 
                 px-4 py-2 text-sm font-semibold text-white
-                w-[190px]                    
+                w-[190px] leading-none h-9                   
                 sm:w-auto sm:px-4 sm:py-2
                 shadow-sm hover:bg-indigo-700">
                 <FaLinkedin className="h-4 w-4" /> Connect on LinkedIn
