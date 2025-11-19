@@ -73,13 +73,13 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-gray-900">Connect</h4>
 
             <p className="mt-4 text-sm text-gray-600">
-              Want to collaborate or talk about a project? Reach out on LinkedIn or send a quick message.
+              Want to collaborate or talk about a project? Send a quick message.
             </p>
 
             {/* Footer Button */}
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
+              {/* <a
                 href="https://www.linkedin.com/in/sreemonkavungal/"
                 target="_blank"
                 rel="noreferrer"
@@ -89,7 +89,7 @@ export default function Footer() {
                 sm:w-auto sm:px-4 sm:py-2
                 shadow-sm hover:bg-indigo-700">
                 <FaLinkedin className="h-4 w-4" /> Connect on LinkedIn
-              </a>
+              </a> */}
 
               <a
                 href="/contact"
