@@ -151,7 +151,7 @@ export default function AboutSection() {
 
                 <div className="mt-4 flex flex-wrap gap-3">
                   <a
-                    href="mailto:hello@sreemonkavungal.dev"
+                    href="mailto:sreemonkavungal@gmail.com"
                     className="inline-flex items-center rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
                   >
                     Email Me
