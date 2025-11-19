@@ -1,3 +1,4 @@
+// src/components/ContactForm.jsx
 import React, { useEffect, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Switch } from "@headlessui/react";
@@ -18,55 +19,84 @@ export default function ContactForm() {
     message: "",
   };
 
-  const [agreed, setAgreed] = useState(false);
   const [formFields, setFormFields] = useState(initialForm);
+  const [agreed, setAgreed] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(null); // null | 'sending' | 'success' | 'failure'
+  const [errors, setErrors] = useState({}); // field -> message
 
+  // Controlled input handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormFields((prev) => ({ ...prev, [name]: value }));
+    // clear field-level error as user types
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
+  // Basic validation: returns errors object
+  const validate = () => {
+    const errs = {};
+    if (!formFields.firstName.trim()) errs.firstName = "First name is required.";
+    if (!formFields.lastName.trim()) errs.lastName = "Last name is required.";
+    if (!formFields.email.trim()) errs.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formFields.email)) errs.email = "Enter a valid email.";
+    if (!formFields.phoneNumber.trim()) errs.phoneNumber = "Phone number is required.";
+    // optional: simple numeric check
+    else if (!/^[0-9+\-\s()]{6,20}$/.test(formFields.phoneNumber)) errs.phoneNumber = "Enter a valid phone number.";
+    if (!formFields.message.trim()) errs.message = "Message cannot be empty.";
+    if (!agreed) errs.agreed = "Please agree to the privacy policy.";
+    return errs;
+  };
+
+  // Submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // simple guard to prevent double submits
+    // prevent double submit while sending
     if (submissionStatus === "sending") return;
 
+    const errs = validate();
+    if (Object.keys(errs).length) {
+      setErrors(errs);
+      setSubmissionStatus(null);
+      // focus the first error field (nice UX)
+      const firstErr = Object.keys(errs)[0];
+      const el = document.querySelector(`[name="${firstErr}"]`);
+      if (el) el.focus();
+      return;
+    }
+
     setSubmissionStatus("sending");
+    setErrors({});
 
     try {
       const response = await fetch("https://formspree.io/f/xeqyeenr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formFields),
+        body: JSON.stringify({
+          ...formFields,
+          country: formFields.country,
+        }),
       });
 
       if (response.ok) {
         setSubmissionStatus("success");
-        // Reset the form fields and the switch
         setFormFields(initialForm);
         setAgreed(false);
-
-        // Optionally clear the success status after a short while
-        setTimeout(() => setSubmissionStatus(null), 3000);
+        // clear success after a bit
+        setTimeout(() => setSubmissionStatus(null), 4000);
       } else {
         setSubmissionStatus("failure");
-        setTimeout(() => setSubmissionStatus(null), 3000);
+        setTimeout(() => setSubmissionStatus(null), 4000);
       }
     } catch (err) {
       setSubmissionStatus("failure");
-      setTimeout(() => setSubmissionStatus(null), 3000);
+      setTimeout(() => setSubmissionStatus(null), 4000);
     }
   };
 
-  useEffect(() => {
-    // keep if you want to debug status changes
-    // console.log("submissionStatus:", submissionStatus);
-  }, [submissionStatus]);
-
   return (
     <div className="bg-white px-6 py-20 sm:py-32 lg:px-8">
+      {/* Decorative background */}
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
@@ -81,169 +111,207 @@ export default function ContactForm() {
       </div>
 
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Let's Connect!
-        </h2>
-        <p className="mt-2 text-gray-600">
-          Feel free to reach out regarding projects, collaboration, or support.
-        </p>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Let's Connect!</h2>
+        <p className="mt-2 text-gray-600">Feel free to reach out regarding projects, collaboration, or support.</p>
       </div>
 
-      <form
-        action="https://formspree.io/f/xeqyeenr"
-        method="POST"
-        className="mx-auto mt-16 max-w-xl sm:mt-20"
-        onSubmit={handleSubmit}
-      >
+      {/* Status banners */}
+      <div className="mx-auto mt-6 max-w-xl">
+        {submissionStatus === "success" && (
+          <div role="status" aria-live="polite" className="rounded-md bg-green-50 border border-green-100 px-4 py-2 text-sm text-green-700">
+            Message sent — thanks! I will reply soon.
+          </div>
+        )}
+        {submissionStatus === "failure" && (
+          <div role="alert" className="rounded-md bg-amber-50 border border-amber-100 px-4 py-2 text-sm text-amber-800">
+            Something went wrong. Please try again later.
+          </div>
+        )}
+      </div>
+
+      <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-xl sm:mt-10" noValidate>
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+          {/* First name */}
           <div>
             <label htmlFor="firstName" className="block text-sm font-semibold leading-6 text-gray-900">
               First name
             </label>
             <div className="mt-2.5">
               <input
-                type="text"
-                name="firstName"
                 id="firstName"
-                autoComplete="given-name"
+                name="firstName"
                 value={formFields.firstName}
                 onChange={handleInputChange}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                autoComplete="given-name"
+                className={classNames(
+                  "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset sm:text-sm sm:leading-6",
+                  errors.firstName ? "ring-red-400" : "ring-gray-300",
+                  "focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:text-gray-400"
+                )}
               />
             </div>
+            {errors.firstName && <p className="mt-1 text-xs text-red-600">{errors.firstName}</p>}
           </div>
 
+          {/* Last name */}
           <div>
             <label htmlFor="lastName" className="block text-sm font-semibold leading-6 text-gray-900">
               Last name
             </label>
             <div className="mt-2.5">
               <input
-                type="text"
-                name="lastName"
                 id="lastName"
-                autoComplete="family-name"
+                name="lastName"
                 value={formFields.lastName}
                 onChange={handleInputChange}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                autoComplete="family-name"
+                className={classNames(
+                  "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset sm:text-sm sm:leading-6",
+                  errors.lastName ? "ring-red-400" : "ring-gray-300",
+                  "focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:text-gray-400"
+                )}
               />
             </div>
+            {errors.lastName && <p className="mt-1 text-xs text-red-600">{errors.lastName}</p>}
           </div>
 
+          {/* Company */}
           <div className="sm:col-span-2">
             <label htmlFor="company" className="block text-sm font-semibold leading-6 text-gray-900">
               Company
             </label>
             <div className="mt-2.5">
               <input
-                type="text"
-                name="company"
                 id="company"
-                autoComplete="organization"
+                name="company"
                 value={formFields.company}
                 onChange={handleInputChange}
+                autoComplete="organization"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
 
+          {/* Email */}
           <div className="sm:col-span-2">
             <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
               Email
             </label>
             <div className="mt-2.5">
               <input
-                type="email"
-                name="email"
                 id="email"
-                autoComplete="email"
+                name="email"
+                type="email"
                 value={formFields.email}
                 onChange={handleInputChange}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                autoComplete="email"
+                className={classNames(
+                  "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset sm:text-sm sm:leading-6",
+                  errors.email ? "ring-red-400" : "ring-gray-300",
+                  "focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:text-gray-400"
+                )}
               />
             </div>
+            {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
           </div>
 
+
+          {/* PhoneNumber */}
           <div className="sm:col-span-2">
             <label htmlFor="phoneNumber" className="block text-sm font-semibold leading-6 text-gray-900">
               Phone number
             </label>
+
             <div className="relative mt-2.5">
+
+              {/* Country selector box (fixed width) */}
               <div className="absolute inset-y-0 left-0 flex items-center">
-                <label htmlFor="country" className="sr-only">
-                  Country
-                </label>
                 <select
                   id="country"
                   name="country"
                   value={formFields.country}
                   onChange={handleInputChange}
-                  className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 appearance-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                  className="h-full w-24 rounded-l-md border-0 bg-gray-50 px-2 text-gray-700 text-sm focus:ring-indigo-600"
                 >
-                  <option value="IND">IND</option>
-                  <option value="USA">USA</option>
-                  <option value="UAE">UAE</option>
+                  <option value="IND">+91 (IND)</option>
+                  <option value="USA">+1 (USA)</option>
+                  <option value="UK">+44 (UK)</option>
+                  <option value="UAE">+971 (UAE)</option>
+                  <option value="CAN">+1 (CAN)</option>
+                  <option value="AUS">+61 (AUS)</option>
                 </select>
-                <ChevronDownIcon
-                  className="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
-                  aria-hidden="true"
-                />
               </div>
+
+              {/* Phone input field */}
               <input
-                type="tel"
-                name="phoneNumber"
                 id="phoneNumber"
-                autoComplete="tel"
+                name="phoneNumber"
+                type="tel"
                 value={formFields.phoneNumber}
                 onChange={handleInputChange}
-                className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                autoComplete="tel"
+                placeholder="Enter phone number"
+                className={classNames(
+                  "block w-full rounded-md border-0 px-3.5 py-2 pl-28 text-gray-900 shadow-sm ring-1 ring-inset sm:text-sm sm:leading-6",
+                  errors.phoneNumber ? "ring-red-400" : "ring-gray-300",
+                  "focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:text-gray-400"
+                )}
               />
             </div>
+
+            {errors.phoneNumber && (
+              <p className="mt-1 text-xs text-red-600">{errors.phoneNumber}</p>
+            )}
           </div>
 
+
+
+
+          {/* Message */}
           <div className="sm:col-span-2">
             <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
               Message
             </label>
             <div className="mt-2.5">
               <textarea
-                name="message"
                 id="message"
+                name="message"
                 rows={4}
                 value={formFields.message}
                 onChange={handleInputChange}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className={classNames(
+                  "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset sm:text-sm sm:leading-6",
+                  errors.message ? "ring-red-400" : "ring-gray-300",
+                  "focus:ring-2 focus:ring-inset focus:ring-indigo-600 placeholder:text-gray-400"
+                )}
               />
             </div>
+            {errors.message && <p className="mt-1 text-xs text-red-600">{errors.message}</p>}
           </div>
 
-          <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
+          {/* Agree switch */}
+          <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2 items-center">
             <div className="flex h-6 items-center">
               <Switch
                 checked={agreed}
                 onChange={setAgreed}
                 className={classNames(
                   agreed ? "bg-indigo-600" : "bg-gray-200",
-                  "flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  "relative inline-flex h-6 w-11 items-center rounded-full transition-colors"
                 )}
               >
-                <span className="sr-only">Agree to policies</span>
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    agreed ? "translate-x-3.5" : "translate-x-0",
-                    "h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"
-                  )}
-                />
+                <span className={classNames(agreed ? "translate-x-6" : "translate-x-1", "inline-block h-4 w-4 transform rounded-full bg-white transition")} />
               </Switch>
             </div>
-            <Switch.Label className="text-sm leading-6 text-gray-600">
+
+            <Switch.Label className="text-sm text-gray-600">
               By selecting this, you agree to our{" "}
               <Link to="/privacy-policy" className="font-semibold text-indigo-600">
-                privacy&nbsp;policy
+                privacy policy
               </Link>
               .
             </Switch.Label>
+            {errors.agreed && <p className="mt-1 text-xs text-red-600">{errors.agreed}</p>}
           </Switch.Group>
         </div>
 
