@@ -9,6 +9,7 @@ import TermsPage from './pages/TermsPage.jsx';
 import PrivacyPage from './pages/PrivacyPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 
+import { Analytics } from "@vercel/analytics/react"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
@@ -25,6 +26,7 @@ function App() {
       <Route path='/privacy-policy' element={<PrivacyPage/>}/>
       <Route path="*" element={<NotFound/>} />
     </Routes>
+    <Analytics/>
     </BrowserRouter>
   );
 }
