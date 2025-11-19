@@ -49,12 +49,12 @@ function TechChip({ children }) {
 export default function AboutSection() {
     return (
         <section id="about" className="bg-white py-16 sm:py-20">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-3">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-start">
                     {/* Intro / Bio */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-24 space-y-6">
-                            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">About Me</h2>
+                            <h2 className="text-3xl font-bold text-gray-900 sm:text-3xl">About Me</h2>
                             <p className="text-lg text-gray-700">
                                 Hi, I’m <span className="font-semibold">SREEMON KS</span>, a self-taught MERN stack developer skilled in building fast, scalable, and user-focused web applications using React.js, Node.js, Express.js, and MongoDB.
                                 I also specialize in WordPress performance, optimization, and deep technical troubleshooting-debugging PHP/JS issues, improving site speed, and ensuring stable, high-quality deployments.

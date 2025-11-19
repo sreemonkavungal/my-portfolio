@@ -75,12 +75,12 @@ function TechChip({ children }) {
 export default function SkillsSection() {
   return (
     <section id="skills" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-3">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-start">
           {/* Intro */}
           <div className="lg:col-span-1">
             <div className="max-w-xl">
-              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-3xl">
                 Technical Proficiencies
               </h2>
               <p className="mt-4 text-lg text-gray-700">
