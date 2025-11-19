@@ -115,7 +115,7 @@ export default function HeroSection() {
                         </div>
 
                         <p className="mt-4 text-sm text-gray-500">
-                            Available for freelance & collaboration • Open to remote roles
+                            Available For Freelance & Collaboration • Open To Remote And Permanent Roles
                         </p>
                     </div>
 
