@@ -7,6 +7,13 @@ export const projectData = [
     "githubLink": "https://github.com/sreemonkavungal/DocTime"
   },
   {
+    "title": "BurgerByte - POS & Online Ordering System",
+    "image": "BurgerByte.jpg",
+    "description": "A full-stack MERN Point-of-Sale and online ordering system with a responsive user interface and a comprehensive admin dashboard.",
+    "siteLink": "https://burger-byte-three.vercel.app/",
+    "githubLink": "https://github.com/sreemonkavungal/BurgerByte"
+  },
+  {
     "title": "ResetCraft-WP Theme",
     "image": "ResetCraft.jpg",
     "description": "A modern, responsive WordPress theme designed to showcase the WordPress Reset Plugin. This theme features a beautiful gradient design, smooth animations, and a fully responsive layout that highlights your plugin's features effectively.",
@@ -20,27 +27,27 @@ export const projectData = [
     "siteLink": "https://travelpilot.pages.dev/",
     "githubLink": "https://github.com/sreemonkavungal/TravelPilot"
   },
-  {
-    "title": "MERN-Auth App",
-    "image": "Auth App.jpg",
-    "description": "This web app, built with the MERN stack, features authentication (signup, login, logout, update) and access to protected routes. Firebase is used for storage and authentication.",
-    "siteLink": "https://mern-auth-cixd.onrender.com/",
-    "githubLink": "https://github.com/sreemonkavungal/mern-auth"
-  },
-  {
-    "title": "E-commerce-MERN",
-    "image": "E-commerce Page.jpg",
-    "description": "A fully functional e-commerce website using the MERN stack. This project includes essential features such as user authentication, product listings, shopping cart, and checkout functionality.",
-    "siteLink": "https://github.com/sreemonkavungal/e-commerce-MERN",
-    "githubLink": "https://github.com/sreemonkavungal/e-commerce-MERN"
-  },
-  {
-    "title": "ToDo-List-React",
-    "image": "ToDoList.jpg",
-    "description": "This project was built using React and Redux, and allows users to create and manage their to-do lists.",
-    "siteLink": "https://todo-list-react-27o.pages.dev/",
-    "githubLink": "https://github.com/sreemonkavungal/todo-list-react"
-  },
+  // {
+  //   "title": "MERN-Auth App",
+  //   "image": "Auth App.jpg",
+  //   "description": "This web app, built with the MERN stack, features authentication (signup, login, logout, update) and access to protected routes. Firebase is used for storage and authentication.",
+  //   "siteLink": "https://mern-auth-cixd.onrender.com/",
+  //   "githubLink": "https://github.com/sreemonkavungal/mern-auth"
+  // },
+  // {
+  //   "title": "E-commerce-MERN",
+  //   "image": "E-commerce Page.jpg",
+  //   "description": "A fully functional e-commerce website using the MERN stack. This project includes essential features such as user authentication, product listings, shopping cart, and checkout functionality.",
+  //   "siteLink": "https://github.com/sreemonkavungal/e-commerce-MERN",
+  //   "githubLink": "https://github.com/sreemonkavungal/e-commerce-MERN"
+  // },
+  // {
+  //   "title": "ToDo-List-React",
+  //   "image": "ToDoList.jpg",
+  //   "description": "This project was built using React and Redux, and allows users to create and manage their to-do lists.",
+  //   "siteLink": "https://todo-list-react-27o.pages.dev/",
+  //   "githubLink": "https://github.com/sreemonkavungal/todo-list-react"
+  // },
   // {
   //   "title": "LoginApp-MERN",
   //   "image": "LoginApp-MERN.jpg",
